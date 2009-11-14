@@ -1,0 +1,5 @@
+=================
+ Cheminformatics
+=================
+
+This tutorial introduces the use of Python in cheminformatics. To begin with, we will look at accessing data in SDF files. Next we will introduce the Cinfony API, a gateway to several powerful cheminformatics toolkits.

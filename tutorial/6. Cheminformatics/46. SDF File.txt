@@ -1,0 +1,110 @@
+====================
+ Handling SDF files
+====================
+
+One of the most commonly-used file formats in cheminformatics is the SD file format. It can be used be hold 0D, 2D or 3D information as well as additional data fields associated with a molecule. While such files can contain single molecules, it is common to use them to store large numbers of molecules.
+
+An example SDF file, example.sdf, has been included with this tutorial. Since it is simply a type of text file, its contents can be accessed using open, read and readlines as discussed in an earlier tutorial. The following code displays the first ten lines of the file:
+
+.. code-block:: pycon
+
+    >>> f = open("example.sdf", "r")
+    >>> lines = f.readlines()
+    >>> print lines[0:10]
+    >>> f.close()
+
+In the next section we look at ways to access the data in SDF files.
+
+Accessing data fields
+=====================
+
+The data fields of an SDF file often contain the output of some chemistry software. For example, the data fields might be descriptor names and values from MOE, or the component scores of a protein-ligand docking experiment from GOLD.
+
+We need to extract these values to analyse the results. The following function shows one way to do this. For each molecule it returns a dictionary of data values. The dictionary also contains the title field. Since the SDF file may contain several molecules the dictionaries are combined into a list:
+
+.. code-block:: pycon
+
+    >>> def sdffile(filename):
+    ...     input = open(filename, "r")
+    ...     alldata = []
+    ...     data = {}
+    ...     data['title'] = input.next().rstrip()
+    ...     for line in input:
+    ...         if line[0] == ">":
+    ...             k = line.rstrip().split("<")[-1][:-1]
+    ...             v = []
+    ...             line = input.next().strip()
+    ...             while line:
+    ...                 v.append(line)
+    ...                 line = input.next().strip()
+    ...             data[k] = "\n".join(v)
+    ...         elif line[0:4] == "$$$$":
+    ...             alldata.append(data)
+    ...             data = {}
+    ...             try:
+    ...                 data['title'] = input.next().rstrip()
+    ...             except StopIteration:
+    ...                 pass
+    ...     input.close()
+    ...     return alldata
+    ...
+
+This code can be tested with example.sdf:
+
+.. code-block:: pycon
+
+    >>> data = sdffile("example.sdf")
+    >>> print data[0]
+    {'NSC': '1', 'logP': '0.6407', 'title': '2-Methyl-1,4-benzoquinone'}
+    >>> print data[0]
+    {'NSC': '2', 'logP': '5.7054', 'title': "2,2'-Benzothiazyl disulfide"}
+
+The sdfdata function will work fine in general but if the SDF file contains several thousand molecules you may find yourself running out of memory. Even if memory is not a problem, you may only be interested in the properties of the first ten molecules in the file. In that case, it is a waste of time to read in the full SDF file.
+
+To handle this situation, the sdfdata function can be rewritten to return the data dictionaries using the yield keyword:
+
+.. code-block:: pycon
+
+    >>> def sdfdata(filename):
+    ...     input = open(filename, "r")
+    ...     data = {}
+    ...     data['title'] = input.next().rstrip()
+    ...     for line in input:
+    ...         if line[0] == ">":
+    ...             k = line.rstrip().split("<")[-1][:-1]
+    ...             v = []
+    ...             line = input.next().strip()
+    ...             while line:
+    ...                 v.append(line)
+    ...                 line = input.next().strip()
+    ...             data[k] = "\n".join(v)
+    ...         elif line[0:4] == "$$$$":
+    ...             yield data
+    ...             data = {}
+    ...             data['title'] = input.next().rstrip()
+    ...     input.close()
+    ...
+
+The difference between this function and the previous one is that the dictionaries are returned immediately using the yield keyword, rather than concatenated together into a list and returned at the very end using a return statement.
+
+Functions such as this that contain a yield statement are known as generators. From the point of view of the user they behave like iterators. This means that you can use them in loops or call the .next() method to access the next value of the iterator. Even for an infinitely long SDF file the following code will immediately return the data dictionary for the first two molecules in the file:
+
+.. code-block:: pycon
+
+    >>> myiter = sdfdata("example.sdf")
+    >>> print myiter
+    <generator object at 0x000000000000002B>
+    >>> print myiter.next()
+    {'NSC': '1', 'logP': '0.6407', 'title': '2-Methyl-1,4-benzoquinone'}
+    >>> print myiter.next()
+    {'NSC': '2', 'logP': '5.7054', 'title': "2,2'-Benzothiazyl disulfide"}
+
+If you just want to create the same list of dictionaries that resulted from the original sdfdata, you can convert the generator to a list:
+
+.. code-block:: pycon
+
+    >>> myiter = sdfdata("example.sdf")
+    >>> mylist = list(myiter)
+    >>> print mylist[0]
+    {'NSC': '1', 'logP': '0.6407', 'title': '2-Methyl-1,4-benzoquinone'}
+
