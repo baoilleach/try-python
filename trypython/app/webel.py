@@ -11,8 +11,20 @@ import re
 from time import sleep
 
 # .NET classes
+import clr
+clr.AddReference('IronPython')
+clr.AddReference('Microsoft.Scripting')
+
 from System.Net import WebClient
 from System import Uri, UriKind
+from System.Windows import (Thickness, TextWrapping, Visibility,
+                            RoutedEventHandler)
+from System.Windows.Controls import (TextBox, TextBlock, Image, Button,
+          ScrollBarVisibility, Border, StackPanel)
+from System.Windows.Controls.Primitives import Popup
+from System.Windows.Media.Imaging import BitmapImage
+from utils import invoke
+
 _webclient = WebClient()
 
 tk = None
@@ -37,7 +49,44 @@ outformats = {"smi":"SMILES", "cdxml":"ChemDraw XML", "inchi":"InChI",
 fps = ["std", "maccs", "estate"]
 """A list of supported fingerprint types"""
 
-# The following function is taken from urllib.py in the IronPython dist
+
+
+def popupclose(sender, e):
+    popup.IsOpen = False
+
+@invoke
+def showimage(url):
+    uri = Uri(url)
+    imgsrc = BitmapImage(uri)
+    img.SetValue(Image.SourceProperty, imgsrc)
+    popup.IsOpen = True
+
+popup = Popup()
+##border = Border()
+##border.BorderThickness = Thickness(5.0)
+mysp = StackPanel()
+img = Image()
+##uri = Uri("http://www.redbrick.dcu.ie/~noel/noel08.png")
+##imgsrc = BitmapImage(uri)
+##img.SetValue(Image.SourceProperty, imgsrc)
+
+closePopup = Button()
+closePopup.Content = "Close"
+##closePopup.Background = new SolidColorBrush( Colors.Magenta );
+##closePopup.FontFamily = new FontFamily( "Verdana" );
+closePopup.FontSize = 14.0
+closePopup.Width = 50.0
+closePopup.Click += RoutedEventHandler(popupclose)
+##closePopup.Margin = new Thickness( 10 );
+
+mysp.Children.Add(img)
+mysp.Children.Add(closePopup)
+popup.Child = mysp
+popup.VerticalOffset = 75.
+popup.HorizontalOffset = 25.
+popup.IsOpen = False
+
+# The following function is taken from urllib.py
 def _quo(text, safe="/"):
     always_safe = ('ABCDEFGHIJKLMNOPQRSTUVWXYZ'
                'abcdefghijklmnopqrstuvwxyz'
@@ -286,8 +335,8 @@ class Molecule(object):
 
     def draw(self):
         """Create a 2D depiction of the molecule."""
-        global showimage        
-        url = "http://cactus.nci.nih.gov/chemical/structure/%s/image" % _quo(self.smiles)
+        
+        url = "http://cactus.nci.nih.gov/chemical/structure/%s/image?format=png&frame=1" % _quo(self.smiles)
         showimage(url)
 
 class Fingerprint(object):
