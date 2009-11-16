@@ -18,7 +18,7 @@ To use Webel, simple import the 'webel' module as follows:
 Create a molecule from an identifier
 ====================================
 
-As you might expect, the main class in Cinfony is the Molecule class. In Webel, a Molecule is created from a chemical identifier. The list of available identifiers for input is stored in the 'informats' dictionary:
+As you might expect, the main class in Cinfony is the ``Molecule`` class. In Webel, a ``Molecule`` is created from a chemical identifier. The list of available identifiers for input is stored in the ``informats`` dictionary:
 
 .. code-block:: pycon
 
@@ -28,7 +28,7 @@ As you might expect, the main class in Cinfony is the Molecule class. In Webel, 
 
 The keys in this dictionary are the format codes, while the values are a succinct description of the format.
 
-The 'readstring' method converts an identifier to a Molecule. To read the documentation for any method or class, you can use the 'help' command as follows:
+The ``readstring()`` method converts an identifier to a Molecule. To read the documentation for any method or class, you can use the 'help' command as follows:
 
 .. code-block:: pycon
 
@@ -64,7 +64,7 @@ Now that you have a Molecule, the next section looks at what you can do with it.
 Molecule attributes and methods
 ===============================
 
-We have already introduced the 'help' command to show the documentation for a particular method or class. If you use this command to look at the documentation available for webel.Molecule and use the scrollbar to scroll up to the start, you will see the following summary:
+We have already introduced the ``help()`` command to show the documentation for a particular method or class. If you use this command to look at the documentation available for webel.Molecule and use the scrollbar to scroll up to the start, you will see the following summary:
 
 .. code-block:: pycon
 
@@ -86,7 +86,7 @@ We have already introduced the 'help' command to show the documentation for a pa
      |  The underlying SMILES string can be accessed using the attribute:
      |     smiles
 
-The sections of interest here are the list of attributes and methods. The formula and molwt attributes refer to molecular formula and molecular weight respectively. They can be used as follows to find the formula and molecular weight of a molecule:
+The sections of interest here are the list of attributes and methods. The ``formula`` and ``molwt`` attributes refer to molecular formula and molecular weight respectively. They can be used as follows to find the formula and molecular weight of a molecule:
 
 .. code-block:: pycon
 
@@ -98,7 +98,7 @@ The sections of interest here are the list of attributes and methods. The formul
 
 Try this for some other molecules. Note that if the molecule name is not recognized when using readstring, then a long error message appears ending in "HTTP Error 404: Not Found".
 
-Next let's look at the draw() method. It should be obvious what this does, but let's look at the documentation anyway:
+Next let's look at the ``draw()`` method. It should be obvious what this does, but let's look at the documentation anyway:
 
 .. code-block:: pycon
 
@@ -114,12 +114,12 @@ Let's try it out, using the Molecule object we have just created:
 
 After a second or two (remember that we are using web services), you should see a 2D image of aspirin popup on the left hand side. Click the Close button to close it.
 
-In the next few sections, we look at the remaining Molecule methods: write(), calcfp() and calcdesc().
+In the next few sections, we look at the remaining Molecule methods: ``write()``, ``calcfp()`` and ``calcdesc()``
 
 Convert a Molecule to a chemical identifier
 ===========================================
 
-We already know how to convert a chemical identifier to a Molecule but how about the reverse, converting a Molecule to a chemical identifier? The Molecule write() method allows us to do this. The list of available output formats is in the 'outformats' dictionary:
+We already know how to convert a chemical identifier to a Molecule but how about the reverse, converting a Molecule to a chemical identifier? The Molecule ``write()`` method allows us to do this. The list of available output formats is in the ``outformats`` dictionary:
 
 .. code-block:: pycon
 
@@ -158,5 +158,5 @@ The fact than more than 200 common names for aspirin were found suggests that pe
 Coming soon...
 ==============
 
-A description of calcfp() and calcdesc(). Information on where to go from here.
+A description of ``calcfp()`` and ``calcdesc()``. Information on where to go from here.
 

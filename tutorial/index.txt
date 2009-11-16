@@ -9,7 +9,7 @@
    :format: xaml
 
 
-**Try Python** is an interactive Python tutorial created for Silverlight and Moonlight by Michael Foord.
+**Try Python** is an interactive Python tutorial created for Silverlight and Moonlight by Michael Foord. The Cheminformatics section was added by Noel O'Boyle.
 
 The Python console to the right behaves like the Python interactive interpreter. It runs IronPython 2.0, which is the equivalent of Python 2.5. The code you enter in the console runs in the browser.
 
@@ -19,18 +19,18 @@ Most of the tutorial pages have code examples for you to try out. The examples h
 
 .. code-block:: pycon
 
-    >>> print 'Hello world!'
+    >>> print 'Hello Chemistry World!'
 
 Here's a slightly longer version for those who prefer object oriented programming:
 
 .. code-block:: pycon
 
     >>> class HelloWorld(object):
-    ...     def say_hello(self):
-    ...         print 'Hello world!'
+    ...     def say_hello_to(self, person):
+    ...         print 'Hello to %s!' % person
     ... 
     >>> hello = HelloWorld()
-    >>> hello.say_hello()
-    Hello world!
+    >>> hello.say_hello_to("Jason Isaacs")
+    Hello to Jason Isaacs!
 
 If you want an explanation of how the code above works, then you need to read the tutorial...
