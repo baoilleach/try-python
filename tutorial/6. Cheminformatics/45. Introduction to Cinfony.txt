@@ -96,7 +96,7 @@ The sections of interest here are the list of attributes and methods. The ``form
     >>> print "The molecular formula for aspirin is", mol.formula
     The molecular formula for aspirin is C9H8O4
 
-Try this for some other molecules. Note that if the molecule name is not recognized when using readstring, then a long error message appears ending in "HTTP Error 404: Not Found".
+Try this for some other molecules. Note that if the molecule name is not recognized when using ``readstring()``, an error ()``message is shown.
 
 Next let's look at the ``draw()`` method. It should be obvious what this does, but let's look at the documentation anyway:
 
@@ -143,7 +143,7 @@ Another point to note is that the 'names' format returns a list of common names 
     alicylate', 'Acetylsalicylic acid', 'Aspirin', 'C01405', 'component of A.S.A. Co
     mpound', 'component of A.S.A. and Codeine Compound', 'component of Ansemco 2']
 
-The fact than more than 200 common names for aspirin were found suggests that perhaps such names such not be used as unique identifiers. IUPAC developed the InChI format for just this purpose. Webel returns both the InChI and the AuxInfo (auxiliary information) separated by a tab. To get just the InChI we need to split() the string, and access the first element. Let's find the InChI for aspirin:
+The fact than more than 200 common names for aspirin were found suggests that perhaps such names should not be used as unique identifiers. IUPAC developed the InChI format for just this purpose. Webel returns both the InChI and the AuxInfo (auxiliary information) separated by a tab. To get just the InChI we need to split() the string, and access the first element. Let's find the InChI for aspirin:
 
 .. code-block:: pycon
 
