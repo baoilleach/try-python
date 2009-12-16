@@ -7,7 +7,7 @@ A molecular fingerprint is an encoding of the structure of a molecule as a serie
 How to calculate a fingerprint
 ==============================
 
-The calcfp() method of a Molecule calculates a molecular fingerprint. Several different fingerprint types are available the names of which are stored in the the fps variable:
+The ``calcfp()`` method of a Molecule calculates a molecular fingerprint. Several different fingerprint types are available the names of which are stored in the the fps variable:
 
 .. code-block:: pycon
 
@@ -31,12 +31,12 @@ The default fingerprint is 'std', a Daylight-type fingerprint that encodes all p
     >>> methane = webel.readstring("name", "methane")
     >>> methanefp = methane.calcfp()
 
-methanefp is a Fingerprint object. The next section looks at the attributes of this object.
+methanefp is a ``Fingerprint`` object. The next section looks at the attributes of this object.
 
 The Fingerprint class
 =====================
 
-When calcfp() is called it returns a Fingerprint object. This has two important attributes, fp and bits, as the docstring describes:
+When ``calcfp()`` is called it returns a ``Fingerprint`` object. This has two important attributes, ``fp`` and ``bits``, as the docstring describes:
 
 .. code-block:: pycon
 
@@ -151,4 +151,4 @@ In the following example we will use the Tanimoto coefficient to identify which 
     The Tanimoto of progesterone and estradiol is 0.09
     The Tanimoto of cortisone and estradiol is 0.15
 
-Testosterone and progresterone have the highest pairwise similarity which you can verify using their 2D structures (using the .draw() method).
+Testosterone and progresterone have the highest pairwise similarity which you can verify using their 2D structures (using the ``draw()`` method).

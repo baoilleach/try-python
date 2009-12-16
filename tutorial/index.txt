@@ -1,11 +1,11 @@
-=================================================
- Interactive Python Tutorial for Cheminformatics
-=================================================
+======================================
+ Interactive Cheminformatics Tutorial
+======================================
 
 .. role:: raw-xaml(raw)
    :format: xaml
 
-Welcome to the Interactive Python Tutorial for Cheminformatics. This tutorial was developed by Noel O'Boyle using the **Try Python** software created by Michael Foord.
+Welcome to the Interactive Cheminformatics Tutorial. This tutorial was developed by Noel O'Boyle using the **Try Python** software created by Michael Foord. Please send any suggestions for improvements to baoilleach@gmail.com.
 
 Instructions
 ============

@@ -9,7 +9,7 @@ Calculate molecular descriptors
 
 A common aim in cheminformatics is to develop a statistical model relating the chemical structure to a physical or biological property. To do so, we need numeric values that somehow encode aspects of the chemical structure. Such values are referred to as molecular descriptors.
 
-The list of available descriptors can be found using the getdescs() method as follows:
+The list of available descriptors can be found using the ``getdescs()`` method as follows:
 
 .. code-block:: pycon
 
@@ -24,7 +24,7 @@ The list of available descriptors can be found using the getdescs() method as fo
 
 The descriptors available through Webel are all calculated by a webservice that uses the CDK. The website at http://pele.farmbio.uu.se/nightly-1.2.x/dnames.html describes the meaning of each descriptor.
 
-To calculate descriptor values for a molecule, you use the molecule's calcdesc() method. Here is the docstring for the method:
+To calculate descriptor values for a molecule, you use the molecule's ``calcdesc()`` method. Here is the docstring for the method:
 
 .. code-block:: pycon
 
@@ -41,7 +41,7 @@ To calculate descriptor values for a molecule, you use the molecule's calcdesc()
         calculated. See the descs variable for a list of available
         descriptors.
 
-calcdesc() returns a dictionary of descriptor values:
+``calcdesc()`` returns a dictionary of descriptor values:
 
 .. code-block:: pycon
 
@@ -91,11 +91,24 @@ All of these values can be calculated using available CDK descriptors. Here is a
     ...              ('ALOGPDescriptor', 'ALogp2')]
     ...     targets = [500, 5, 10, 5.0]
     ...     descvalues = mol.calcdesc([x[0] for x in descs])
-    ...     print descvalues
     ...     failures = 0
     ...     for desc, target in zip(descs, targets):
     ...         descvalue = descvalues["%s_%s" % (desc[0], desc[1])]
     ...         if descvalue > target:
     ...             failures += 1
     ...     return failures
+
+Not surprisingly, most common drugs pass the Lipinski rules:
+
+.. code-block:: pycon
+
+    >>> for name in ['aspirin', 'tylenol', 'penicillin']:
+    ...     print name, lipinski(mol.readstring("name", name))
+
+Drugs that fail the rules often have poor adsorption and have to be administered by injection. Compare the number of failures for the following drugs:
+
+.. code-block:: pycon
+
+    >>> for name in ['docetaxel', 'atosiban', 'kinevac']:
+    ...     print name, lipinski(mol.readstring("name", name))
 

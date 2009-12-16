@@ -10,8 +10,8 @@
          FontFamily="Verdana,Tahoma,Geneva,Lucida Grande,Trebuchet MS,Helvetica,Arial,Serif"
          >Try Python: Interactive Python Tutorial</TextBlock>
         <StackPanel x:Name="topNavbar" Orientation="Horizontal">
-            <HyperlinkButton Content="Voidspace" FontSize="15" Margin="5" FontFamily="Verdana,Tahoma,Geneva,Lucida Grande,Trebuchet MS,Helvetica,Arial,Serif"
-             NavigateUri="http://www.voidspace.org.uk/" />
+            <HyperlinkButton Content="Cinfony" FontSize="15" Margin="5" FontFamily="Verdana,Tahoma,Geneva,Lucida Grande,Trebuchet MS,Helvetica,Arial,Serif"
+             NavigateUri="http://cinfony.googlecode.com" />
             <Button Margin="5" FontSize="15"  Height="25" Content="First" x:Name="topFirst" FontFamily="Verdana,Tahoma,Geneva,Lucida Grande,Trebuchet MS,Helvetica,Arial,Serif" />
             <Button Margin="5" FontSize="15"  Height="25" Content="Prev" x:Name="topPrev" FontFamily="Verdana,Tahoma,Geneva,Lucida Grande,Trebuchet MS,Helvetica,Arial,Serif" />
             <Button Margin="5" FontSize="15"  Height="25" Content="Next" x:Name="topNext" FontFamily="Verdana,Tahoma,Geneva,Lucida Grande,Trebuchet MS,Helvetica,Arial,Serif" />

@@ -265,7 +265,7 @@ title = 'Try Python: %s'
 @always_invoke
 def change_title():
     if topComboBoxPart.SelectedIndex == 0:
-        fragment = 'Interactive Python Tutorial in the Browser'
+        fragment = 'Interactive Cheminformatics Tutorial'
     else:
         fragment = topComboBoxPart.SelectedItem.Content
         if topComboBoxPage.SelectedIndex != 0:
