@@ -103,12 +103,12 @@ Not surprisingly, most common drugs pass the Lipinski rules:
 .. code-block:: pycon
 
     >>> for name in ['aspirin', 'tylenol', 'penicillin']:
-    ...     print name, lipinski(mol.readstring("name", name))
+    ...     print name, lipinski(webel.readstring("name", name))
 
 Drugs that fail the rules often have poor adsorption and have to be administered by injection. Compare the number of failures for the following drugs:
 
 .. code-block:: pycon
 
     >>> for name in ['docetaxel', 'atosiban', 'kinevac']:
-    ...     print name, lipinski(mol.readstring("name", name))
+    ...     print name, lipinski(webel.readstring("name", name))
 
