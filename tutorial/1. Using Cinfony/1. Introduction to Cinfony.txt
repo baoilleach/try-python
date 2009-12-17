@@ -4,12 +4,12 @@
 
 Cinfony is a Python library that makes it easy to use three Open Source cheminformatics libraries: the CDK, OpenBabel, and the RDKit.
 
-In this tutorial we will use the Cinfony module Webel, which uses web services to carry out cheminformatics analysis. As Webel uses the same API (that is, the set of classes, methods and variables in a library) as the other Cinfony modules, this means that the commands learnt here can also be used to access the CDK, OpenBabel or the RDKit (see the Where to next? section for more information on this).
+In this tutorial we will use the Cinfony module Webel, which uses web services to carry out cheminformatics analysis. As Webel uses the same API (that is, the set of classes, methods and variables in a library) as the other Cinfony modules, this means that the commands learnt here can also be used to access the CDK, OpenBabel or the RDKit.
 
 Getting started
 ===============
 
-To use Webel, simple import the 'webel' module as follows:
+To use Webel, simple import the ``webel`` module as follows:
 
 .. code-block:: pycon
 
@@ -28,7 +28,7 @@ As you might expect, the main class in Cinfony is the ``Molecule`` class. In Web
 
 The keys in this dictionary are the format codes, while the values are a succinct description of the format.
 
-The ``readstring()`` method converts an identifier to a Molecule. To read the documentation for any method or class, you can use the 'help' command as follows:
+The ``readstring()`` method converts an identifier to a Molecule. To read the documentation for any method or class, you can use the ``help()`` command as follows:
 
 .. code-block:: pycon
 
@@ -96,7 +96,7 @@ The sections of interest here are the list of attributes and methods. The ``form
     >>> print "The molecular formula for aspirin is", mol.formula
     The molecular formula for aspirin is C9H8O4
 
-Try this for some other molecules. Note that if the molecule name is not recognized when using ``readstring()``, an error ()``message is shown.
+Try this for some other molecules. Note that if the molecule name is not recognized when using ``readstring()``, an error message is shown.
 
 Next let's look at the ``draw()`` method. It should be obvious what this does, but let's look at the documentation anyway:
 
@@ -114,7 +114,7 @@ Let's try it out, using the Molecule object we have just created:
 
 After a second or two (remember that we are using web services), you should see a 2D image of aspirin popup on the left hand side. Click the Close button to close it.
 
-In the next few sections, we look at the remaining Molecule methods: ``write()``, ``calcfp()`` and ``calcdesc()``
+In the next few sections, we look at the remaining Molecule methods: ``write()``, ``calcfp()`` and ``calcdesc()``.
 
 Convert a Molecule to a chemical identifier
 ===========================================
@@ -143,7 +143,7 @@ Another point to note is that the 'names' format returns a list of common names 
     alicylate', 'Acetylsalicylic acid', 'Aspirin', 'C01405', 'component of A.S.A. Co
     mpound', 'component of A.S.A. and Codeine Compound', 'component of Ansemco 2']
 
-The fact than more than 200 common names for aspirin were found suggests that perhaps such names should not be used as unique identifiers. IUPAC developed the InChI format for just this purpose. Webel returns both the InChI and the AuxInfo (auxiliary information) separated by a tab. To get just the InChI we need to split() the string, and access the first element. Let's find the InChI for aspirin:
+The fact than more than 200 common names for aspirin were found suggests that perhaps such names should not be used as unique identifiers. IUPAC developed the InChI format for just this purpose. Webel returns both the InChI and the AuxInfo (auxiliary information) separated by a tab. To get just the InChI we need to ``split()`` the string, and access the first element. Let's find the InChI for aspirin:
 
 .. code-block:: pycon
 
@@ -154,9 +154,4 @@ The fact than more than 200 common names for aspirin were found suggests that pe
     >>> print inchi.split()[0]
     InChI=1/C9H8O4/c1-6(10)13-8-5-3-2-4-7(8)9(11)12/h2-5H,1H3,(H,11,12)/f/h11H
 
-
-Coming soon...
-==============
-
-A description of ``calcfp()`` and ``calcdesc()``. Information on where to go from here.
-
+To continue onto the next chapter use the navigation bar at the top or bottom, or click the *Next* button below.

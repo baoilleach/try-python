@@ -95,10 +95,12 @@ Let's use Python set objects to do the same for methanol and propanol:
 
 .. code-block:: pycon
 
-    >>> bitsets = [set(fp[1].bits), set(fp[3].bits)]
+    >>> bitsets = [set(fps[1].bits), set(fps[3].bits)]
     >>> intersection = bitsets[0] & bitsets[1]
-    set([929, 741, 742])
     >>> union = bitsets[0] | bitsets[1]
+    >>> print intersection
+    set([929, 741, 742])
+    >>> print union
     set([929, 644, 741, 742, 300, 637, 542])
     >>> len(intersection) / float(len(union))
     0.42857142857142855
@@ -108,7 +110,7 @@ There are many other set similarity measures that you can easily implement in th
 
 .. code-block:: pycon
 
-    >>> print fp[1] | fp[3]
+    >>> print fps[1] | fps[3]
     0.42857142857142855
 
 Finding similar molecules
@@ -132,13 +134,13 @@ In the following example we will use the Tanimoto coefficient to identify which 
 .. code-block:: pycon
 
     >>> names = ['cholesterol', 'testosterone', 'progesterone',
-    'cortisone', 'estradiol']
+    ... 'cortisone', 'estradiol']
     >>> mols = [webel.readstring("name", x) for x in names]
     >>> fps = [mol.calcfp() for mol in mols]
     >>> for i in range(len(names)-1):
     ...     for j in range(i+1, len(names)):
-    ...             print "The Tanimoto of %s and %s is %.2f" % (names[i], names[j],
-     fps[i] | fps[j])
+    ...             print "The Tanimoto of %s and %s is %.2f" % (
+    ... names[i], names[j], fps[i] | fps[j])
     ...
     The Tanimoto of cholesterol and testosterone is 0.63
     The Tanimoto of cholesterol and progesterone is 0.50
@@ -151,4 +153,4 @@ In the following example we will use the Tanimoto coefficient to identify which 
     The Tanimoto of progesterone and estradiol is 0.09
     The Tanimoto of cortisone and estradiol is 0.15
 
-Testosterone and progresterone have the highest pairwise similarity which you can verify using their 2D structures (using the ``draw()`` method).
+Testosterone and progresterone have the highest pairwise similarity. You can verify this using their 2D structures (using the ``draw()`` method).
